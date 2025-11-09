@@ -1,0 +1,53 @@
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Quản lý danh mục</li>
+</ol>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Danh sách danh mục
+        <a href="/admin/category/create" class="btn btn-success btn-sm float-right">
+            <i class="fa fa-plus"></i> Thêm danh mục
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên danh mục</th>
+                    <th>Mô tả</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Điện tử</td>
+                    <td>Thiết bị điện tử</td>
+                    <td><span class="badge badge-success">Hoạt động</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-primary">Sửa</button>
+                        <button class="btn btn-sm btn-danger">Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Thời trang</td>
+                    <td>Quần áo và phụ kiện</td>
+                    <td><span class="badge badge-success">Hoạt động</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-primary">Sửa</button>
+                        <button class="btn btn-sm btn-danger">Xóa</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

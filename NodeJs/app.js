@@ -1,22 +1,29 @@
 var createError = require('http-errors');
 var express = require('express');
+const {engine} = require('express-handlebars');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var aboutRouter = require('./routes/about');
-var contactRouter = require('./routes/contact');
-var productRouter = require('./routes/product');
-var servicesRouter = require('./routes/services');
-var singleRouter = require('./routes/single');
 var usersRouter = require('./routes/users');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
+// Cấu hình Handlebars
+app.engine('hbs', engine({
+    extname: '.hbs',
+    defaultLayout: 'layouts', // Layout mặc định cho frontend
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+    partialsDir: path.join(__dirname, 'views/partials'),
+    helpers: {
+        // Các helper nếu cần
+    }
+}));
+
 app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -26,26 +33,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/about', aboutRouter);
-app.use('/contact', contactRouter);
-app.use('/product', productRouter);
-app.use('/services', servicesRouter);
-app.use('/single', singleRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
